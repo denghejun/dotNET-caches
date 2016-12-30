@@ -1,3 +1,8 @@
+## What's this
+一个对`.NET`平台下缓存解决方案的探索关于:
+* MemoryCache: `.NET`自定义的内存缓存实现。
+* CacheManager：一个开源的`.NET`内存缓存实现。
+
 ## Microsoft MemoryCache
 
 * `MemoryCache`是.NET唯一实现了`ObjectCache`的类，可以使用它来在内存中缓存任意类型对象。

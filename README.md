@@ -236,6 +236,22 @@ Assert.That(manager.CacheHandles.First().Count, Is.EqualTo(0));
 Assert.That(manager.CacheHandles.Last().Count, Is.GreaterThanOrEqualTo(1));
 ```
 
+###### Cache Expire
+缓存过期是针对每个`Layer`的，可以用连续调用的方式来初始化一个带有过期策略的`CacheManager`。
+
+```
+var manager = CacheFactory.Build<List<Company>>(settings =>
+{
+ settings.WithDictionaryHandle().WithExpiration(ExpirationMode.Absolute, TimeSpan.FromSeconds(1));
+ settings.WithSystemRuntimeCacheHandle();
+ settings.WithUpdateMode(CacheUpdateMode.None);
+});
+```
+注意这里的`WithUpdateMode`,`CacheUpdateMode`有三种值，分别代表：
+* CacheUpdateMode.None: 无论缓存首先被命中在哪一个的`Layer`，各个`Layer`存储的缓存不做任何更新即使它们彼此不一样；
+* CacheUpdateMode.Full: 无论缓存首先被命中在哪一个的`Layer`，各个`Layer`存储的缓存将被更新一致当它们彼此不一样时；
+* CacheUpdateMode.UP: 更新缓存首先被命中的那个`Layer`添加顺序之上的所有`Layer`的缓存以保持一致。
+
 ###### Cache Statistics
 `Cache`在各种`Operation`下的次数统计信息输出。
 ```

@@ -105,7 +105,7 @@ Assert.That(contentsFromCache, Is.EqualTo("01,02,03"));
 ## Open Source CacheManager
 `CacheManager`是`GitHub`上一个开源的专注于`.NET Cache`领域项目，其有许多新的思想和概念是`.NET MemoryCache`所不具备的；相对于`MemoryCache`，其有以下特有`feature`：
 * 代码实现、写法上更符合现如今的可读性、连续性的友好风格
-* 缓存抽象出`Layer`的概念，同一份缓存数据可以同时缓存到多个`Layer`（CacheManager称之为'Handle'）上，有利于防止某`Layer`缓存意外丢失，降低客户端换成未命中的概率，其中`DictionaryHandle`性能最好
+* 缓存抽象出`Layer`的概念，同一份缓存数据可以同时缓存到多个`Layer`（CacheManager称之为'Handle'）上，有利于防止某`Layer`缓存意外丢失，降低客户端缓存未命中的概率，其中`DictionaryHandle`性能最好
 * 每层可单独定义过期策略，并指定层与层之间当发现缓存不一致时（有的丢失了，有的还在）的更新策略
 * 支持通过配置文件(.config)形式定义缓存策略（过期策略、缓存`Handle`等），就可以不修改代码来随时更改
 * 有针对每个`Layer`缓存的Add、Remove、Update、Hit统计信息输出
